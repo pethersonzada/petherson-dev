@@ -154,7 +154,7 @@ export default function Home() {
       </section>
 
       <footer className={styles.rodape}>
-        <p>Feito do zero com Next.js.</p>
+        <p>Feito por Miguel Petherson com Next.js.</p>
       </footer>
     </main>
   );
