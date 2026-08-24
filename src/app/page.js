@@ -12,11 +12,10 @@ export default function Home() {
           disponível para novos projetos
         </span>
         <div className={styles.contatoLinha}>
-          {/* Substitua pelos seus dados reais */}
-          <a href="mailto:seuemail@exemplo.com" className={styles.botaoPrimario}>
+          <a href="mailto:pethersonzada@gmail.com" className={styles.botaoPrimario}>
             Enviar e-mail
           </a>
-          <a href="https://linkedin.com/in/seu-usuario" target="_blank" className={styles.botaoSecundario}>
+          <a href="https://linkedin.com/in/pethersonzada" target="_blank" className={styles.botaoSecundario}>
             LinkedIn
           </a>
           <a href="https://github.com/pethersonzada" target="_blank" className={styles.botaoSecundario}>
