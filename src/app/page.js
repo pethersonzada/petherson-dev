@@ -2,57 +2,7 @@
 
 import { useState } from 'react';
 import styles from './page.module.css';
-
-const projetosData = [
-  {
-    id: 'credit',
-    titulo: 'Análise de Dados e Crédito',
-    descricao: 'Script em Python para uma base de 800 mil registros, prevendo churn de clientes e calculando risco de crédito com Machine Learning.',
-    categoria: 'dados',
-    techs: ['Python', 'Pandas', 'IA'],
-    link: 'https://github.com/pethersonzada/credit-score-predictor-IA'
-  },
-  {
-    id: 'rede',
-    titulo: 'Infraestrutura de Redes',
-    descricao: 'Segmentação de rede corporativa com endereçamento VLSM, expansão wireless WPA2-AES e divisão por VLANs, simulada em Cisco Packet Tracer.',
-    categoria: 'infra',
-    techs: ['Cisco', 'VLAN', 'Redes'],
-    link: 'https://github.com/pethersonzada/rede-corporativa-infraestrutura'
-  },
-  {
-    id: 'rota',
-    titulo: 'Sistema Rota Estudantil',
-    descricao: 'Desenvolvimento ponta a ponta: API REST no back-end com Java e Spring Boot, conectada a um front-end tipado em TypeScript.',
-    categoria: 'fullstack',
-    techs: ['Java', 'Spring Boot', 'TS'],
-    link: 'https://github.com/pethersonzada/rota-estudantil-backend'
-  },
-  {
-    id: 'face',
-    titulo: 'Reconhecimento Facial em Tempo Real',
-    descricao: 'Sistema de captura de vídeo que identifica rostos pela webcam, combinando a biblioteca face_recognition com processamento de imagem via OpenCV.',
-    categoria: 'dados',
-    techs: ['Python', 'OpenCV', 'Visão Computacional'],
-    link: 'https://github.com/pethersonzada/face-capture'
-  },
-  {
-    id: 'dashboard',
-    titulo: 'Dashboard Comercial de Vendas',
-    descricao: 'Tratamento de dados de Excel levados ao Power BI, com o objetivo de extrair tendências reais de lucro e desempenho comercial.',
-    categoria: 'dados',
-    techs: ['Power BI', 'Excel', 'Data Analysis'],
-    link: 'https://github.com/pethersonzada/dashboard-comercial'
-  },
-  {
-    id: 'db',
-    titulo: 'Arquitetura de Banco de Dados',
-    descricao: 'Modelagem completa de um sistema de biblioteca virtual, do diagrama conceitual e lógico até a documentação das regras de negócio.',
-    categoria: 'fullstack',
-    techs: ['SQL', 'Modelagem', 'DBA'],
-    link: 'https://github.com/pethersonzada/sistema-biblioteca-virtual'
-  }
-];
+import { projetosData } from './data/projetos';
 
 export default function Home() {
   const [filtroAtivo, setFiltroAtivo] = useState('todos');
@@ -83,6 +33,57 @@ export default function Home() {
           </a>
         </div>
       </header>
+
+      <section>
+        <h2 className={styles.secaoTitulo}>
+          <span>~/petherson $ cat habilidades.json</span>
+          Matriz de Habilidades & Ecossistema
+        </h2>
+        <div className={styles.skillsGrid}>
+          <div className={styles.skillCard}>
+            <h3>Desenvolvimento de Aplicações</h3>
+            <div className={styles.techLista}>
+              <span className={styles.techBadge}>HTML5</span>
+              <span className={styles.techBadge}>CSS3</span>
+              <span className={styles.techBadge}>JavaScript</span>
+              <span className={styles.techBadge}>TypeScript</span>
+              <span className={styles.techBadge}>Python</span>
+              <span className={styles.techBadge}>Java</span>
+              <span className={styles.techBadge}>React</span>
+              <span className={styles.techBadge}>Next.js</span>
+              <span className={styles.techBadge}>Spring Boot</span>
+              <span className={styles.techBadge}>SQL</span>
+            </div>
+          </div>
+
+          <div className={styles.skillCard}>
+            <h3>IA, Dados e Visão Computacional</h3>
+            <div className={styles.techLista}>
+              <span className={styles.techBadge}>Pandas</span>
+              <span className={styles.techBadge}>NumPy</span>
+              <span className={styles.techBadge}>OpenCV</span>
+              <span className={styles.techBadge}>Keras</span>
+              <span className={styles.techBadge}>TensorFlow</span>
+              <span className={styles.techBadge}>Scikit-Learn</span>
+              <span className={styles.techBadge}>Machine Learning</span>
+            </div>
+          </div>
+
+          <div className={styles.skillCard}>
+            <h3>Ferramentas, Plataformas e Redes</h3>
+            <div className={styles.techLista}>
+              <span className={styles.techBadge}>Power BI</span>
+              <span className={styles.techBadge}>PostgreSQL</span>
+              <span className={styles.techBadge}>Git</span>
+              <span className={styles.techBadge}>GitHub</span>
+              <span className={styles.techBadge}>Docker</span>
+              <span className={styles.techBadge}>Linux / Ubuntu</span>
+              <span className={styles.techBadge}>Cisco Packet Tracer</span>
+              <span className={styles.techBadge}>VLANs & VLSM</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section>
         <h2 className={styles.secaoTitulo}>

@@ -372,3 +372,40 @@
   color: var(--destaque);
   cursor: pointer;
 }
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.skillCard {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  padding: 1.8rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.skillCard:hover {
+  border-color: var(--destaque);
+  transform: translateY(-4px);
+}
+
+.skillCard h3 {
+  font-family: var(--fonte-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  letter-spacing: -0.01em;
+}
+
+/* Responsivo para telas menores */
+@media (max-width: 992px) {
+  .skillsGrid {
+    grid-template-columns: 1fr;
+  }
+}
