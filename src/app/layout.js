@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Miguel Petherson | Desenvolvedor Full-Stack, Dados e Infraestrutura",
+  title: "Miguel Petherson | Dev",
   description:
     "Portfólio de Miguel Petherson: desenvolvimento full-stack, análise de dados com Machine Learning e infraestrutura de redes. Projetos em Python, Java, SQL e Cisco.",
   keywords: [

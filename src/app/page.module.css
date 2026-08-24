@@ -335,3 +335,40 @@
     text-align: center;
   }
 }
+
+.filtroLinha {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filtroBtn {
+  font-family: var(--fonte-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  color: var(--texto-secundario);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filtroBtn:hover {
+  border-color: var(--destaque);
+  color: var(--texto-principal);
+}
+
+.filtroAtivo {
+  font-family: var(--fonte-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: var(--destaque-fraco);
+  border: 1px solid var(--destaque);
+  color: var(--destaque);
+  cursor: pointer;
+}
