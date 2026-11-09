@@ -8,3 +8,11 @@
 .caseRodape{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid #625039;padding-top:22px;margin-top:36px;flex-wrap:wrap}.caseRodape span{color:#aab3be;font:500 12px var(--fonte-display)}.caseRodape a{color:var(--destaque);font:700 13px var(--fonte-display)}
 @media(max-width:850px){.caseGrid{grid-template-columns:1fr;gap:20px}.case{padding:26px}.nav>div{gap:14px}}
 @media(max-width:580px){.nav>div a{font-size:11px}.case{padding:22px}.caseRodape span{line-height:1.8}}
+
+/* Refinamento de interação, legibilidade e estados acessíveis */
+.contagem{display:inline-block;margin-left:7px;opacity:.75;font-size:10px}
+.resultado{color:#aeb7c3;font-size:13px;margin:-9px 0 20px}
+.copiar{background:transparent;border:1px solid #5b626d;border-radius:8px;padding:15px 22px;color:#f0f1f3;cursor:pointer;font:600 13px var(--fonte-display)}
+.copiar:hover{border-color:var(--destaque);color:var(--destaque)}
+.nav a:focus-visible,.filtro:focus-visible,.filtroAtivo:focus-visible,.link:focus-visible,.copiar:focus-visible{outline:3px solid #f3b955;outline-offset:4px}
+@media(max-width:580px){.copiar{width:100%}.nav{height:auto;min-height:80px;gap:14px;padding:15px 0}.nav>div{row-gap:8px}}
