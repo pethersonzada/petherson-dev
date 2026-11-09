@@ -15,7 +15,7 @@ export const metadata = {
     locale: "pt_BR",
     siteName: "Miguel Petherson — Portfólio",
   },
-  twitter: { card: "summary_large_image", title: "Miguel Petherson | Desenvolvedor de Software", description: "Conheça meus projetos, incluindo o BeVans." },
+  twitter: { card: "summary", title: "Miguel Petherson | Desenvolvedor de Software", description: "Conheça meus projetos, incluindo o BeVans." },
 };
 export const viewport = { width: "device-width", initialScale: 1, themeColor: "#0a0c0f" };
 export default function RootLayout({ children }) {
