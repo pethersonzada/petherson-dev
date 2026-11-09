@@ -1,50 +1,11 @@
 export const projetosData = [
-  {
-    id: 'credit',
-    titulo: 'Análise de Dados e Crédito',
-    descricao: 'Script em Python para uma base de 800 mil registros, prevendo churn de clientes e calculando risco de crédito com Machine Learning.',
-    categoria: 'dados',
-    techs: ['Python', 'Pandas', 'IA'],
-    link: 'https://github.com/pethersonzada/credit-score-predictor-IA'
-  },
-  {
-    id: 'rede',
-    titulo: 'Infraestrutura de Redes',
-    descricao: 'Segmentação de rede corporativa com endereçamento VLSM, expansão wireless WPA2-AES e divisão por VLANs, simulada em Cisco Packet Tracer.',
-    categoria: 'infra',
-    techs: ['Cisco', 'VLAN', 'Redes'],
-    link: 'https://github.com/pethersonzada/rede-corporativa-infraestrutura'
-  },
-  {
-    id: 'rota',
-    titulo: 'Sistema Rota Estudantil',
-    descricao: 'Desenvolvimento ponta a ponta: API REST no back-end com Java e Spring Boot, conectada a um front-end tipado em TypeScript.',
-    categoria: 'fullstack',
-    techs: ['Java', 'Spring Boot', 'TS'],
-    link: 'https://github.com/pethersonzada/rota-estudantil-backend'
-  },
-  {
-    id: 'face',
-    titulo: 'Reconhecimento Facial em Tempo Real',
-    descricao: 'Sistema de captura de vídeo que identifica rostos pela webcam, combinando a biblioteca face_recognition com processamento de imagem via OpenCV.',
-    categoria: 'dados',
-    techs: ['Python', 'OpenCV', 'Visão Computacional'],
-    link: 'https://github.com/pethersonzada/face-capture'
-  },
-  {
-    id: 'dashboard',
-    titulo: 'Dashboard Comercial de Vendas',
-    descricao: 'Tratamento de dados de Excel levados ao Power BI, com o objetivo de extrair tendências reais de lucro e desempenho comercial.',
-    categoria: 'dados',
-    techs: ['Power BI', 'Excel', 'Data Analysis'],
-    link: 'https://github.com/pethersonzada/dashboard-comercial'
-  },
-  {
-    id: 'db',
-    titulo: 'Arquitetura de Banco de Dados',
-    descricao: 'Modelagem completa de um sistema de biblioteca virtual, do diagrama conceitual e lógico até a documentação das regras de negócio.',
-    categoria: 'fullstack',
-    techs: ['SQL', 'Modelagem', 'DBA'],
-    link: 'https://github.com/pethersonzada/sistema-biblioteca-virtual'
-  }
+  { id:'bevans', titulo:'BeVans · Mobilidade estudantil', descricao:'Aplicativo mobile para transporte escolar e universitário: confirmação de presença, gestão de passageiros, rotas otimizadas e acompanhamento da van no mapa.', categoria:'fullstack', destaque:true, techs:['React Native','Expo','TypeScript','Firebase','Mapbox'], link:'https://github.com/pethersonzada/bevans-frontend' },
+  { id:'marketplace', titulo:'Marketplace de Serviços', descricao:'Projeto de plataforma de serviços, com foco em fluxos de contratação e experiência de uso.', categoria:'fullstack', techs:['Aplicações Web','Marketplace'], link:'https://github.com/pethersonzada/marketplace-services' },
+  { id:'credito', titulo:'Predição de Score de Crédito', descricao:'Projeto de análise preditiva de risco de crédito usando Python e técnicas de machine learning.', categoria:'dados', techs:['Python','Machine Learning'], link:'https://github.com/pethersonzada/credit-score-predictor-IA' },
+  { id:'clientes', titulo:'Análise de Dados de Clientes', descricao:'Exploração e análise de dados de clientes para apoiar decisões com evidências.', categoria:'dados', techs:['Python','Análise de Dados'], link:'https://github.com/pethersonzada/client-data-analysis' },
+  { id:'dashboard', titulo:'Dashboard Comercial', descricao:'Painel de análise de vendas e indicadores comerciais.', categoria:'dados', techs:['Power BI','Dados'], link:'https://github.com/pethersonzada/dashboard-comercial' },
+  { id:'biblioteca', titulo:'Sistema de Biblioteca Virtual', descricao:'Projeto de sistema e modelagem de dados para uma biblioteca virtual.', categoria:'fullstack', techs:['SQL','Modelagem de Dados'], link:'https://github.com/pethersonzada/sistema-biblioteca-virtual' },
+  { id:'vought', titulo:'Vought Connect', descricao:'Projeto de aplicação web com foco em interface e experiência de navegação.', categoria:'fullstack', techs:['Web','Interface'], link:'https://github.com/pethersonzada/vought-connect' },
+  { id:'face', titulo:'Captura Facial', descricao:'Experimento de captura e processamento de imagens de rostos com Python.', categoria:'dados', techs:['Python','Visão Computacional'], link:'https://github.com/pethersonzada/face-capture' },
+  { id:'automacao', titulo:'Automação com Python', descricao:'Automação de tarefas repetitivas usando scripts Python.', categoria:'infra', techs:['Python','Automação'], link:'https://github.com/pethersonzada/py-auto-entry' }
 ];
