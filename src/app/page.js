@@ -1,187 +1,31 @@
 'use client';
-
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import styles from './page.module.css';
 import { projetosData } from './data/projetos';
-import Terminal from './components/Terminal';
-import FadeIn from './components/FadeIn';
 
+const filtros = [{id:'todos',nome:'Todos'},{id:'fullstack',nome:'Aplicações'},{id:'dados',nome:'Dados & IA'},{id:'infra',nome:'Automação'}];
+const grupos = [
+  {titulo:'Desenvolvimento', itens:['JavaScript','TypeScript','React','Next.js','React Native','Expo','Java','Spring Boot','Python','SQL']},
+  {titulo:'Dados & inteligência artificial', itens:['Pandas','NumPy','Scikit-learn','Power BI','OpenCV','Machine Learning']},
+  {titulo:'Ferramentas & infraestrutura', itens:['Git','GitHub','PostgreSQL','Docker','Linux','Firebase','Mapbox','Redes']}
+];
 export default function Home() {
-  const [filtroAtivo, setFiltroAtivo] = useState('todos');
-
-  const projetosFiltrados = filtroAtivo === 'todos' 
-    ? projetosData 
-    : projetosData.filter(p => p.categoria === filtroAtivo);
-
-  return (
-    <main className={styles.container}>
-      <FadeIn>
-        <header className={styles.cabecalho}>
-          <Terminal comandos={[
-            'whoami', 
-            'python3 train_model.py', 
-            'ssh admin@192.168.1.10', 
-            'docker-compose up -d', 
-            'SELECT * FROM projetos;'
-          ]} />
-          <h1>Miguel Petherson</h1>
-          <p>Desenvolvedor Full-Stack, Dados e Infraestrutura</p>
-          <span className={styles.status}>
-            <span className={styles.statusPonto}></span>
-            disponível para novos projetos
-          </span>
-          <div className={styles.contatoLinha}>
-            <a href="mailto:pethersonzada@gmail.com" className={styles.botaoPrimario}>
-              Enviar e-mail
-            </a>
-            <a href="https://www.linkedin.com/in/pethersonzada" target="_blank" className={styles.botaoSecundario}>
-              LinkedIn
-            </a>
-            <a href="https://github.com/pethersonzada/petherson-dev" target="_blank" className={styles.botaoSecundario}>
-              GitHub
-            </a>
-          </div>
-        </header>
-      </FadeIn>
-
-      <FadeIn>
-        <section>
-          <h2 className={styles.secaoTitulo}>
-            <span>~/petherson $ cat habilidades.json</span>
-            Stack e Ferramentas
-          </h2>
-          <div className={styles.skillsGrid}>
-            <div className={styles.skillCard}>
-              <h3>Desenvolvimento de Aplicações</h3>
-              <div className={styles.techLista}>
-                <span className={styles.techBadge}>HTML5</span>
-                <span className={styles.techBadge}>CSS3</span>
-                <span className={styles.techBadge}>JavaScript</span>
-                <span className={styles.techBadge}>TypeScript</span>
-                <span className={styles.techBadge}>Python</span>
-                <span className={styles.techBadge}>Java</span>
-                <span className={styles.techBadge}>React</span>
-                <span className={styles.techBadge}>Next.js</span>
-                <span className={styles.techBadge}>Spring Boot</span>
-                <span className={styles.techBadge}>SQL</span>
-              </div>
-            </div>
-
-            <div className={styles.skillCard}>
-              <h3>IA, Dados e Visão Computacional</h3>
-              <div className={styles.techLista}>
-                <span className={styles.techBadge}>Pandas</span>
-                <span className={styles.techBadge}>NumPy</span>
-                <span className={styles.techBadge}>OpenCV</span>
-                <span className={styles.techBadge}>Keras</span>
-                <span className={styles.techBadge}>TensorFlow</span>
-                <span className={styles.techBadge}>Scikit-Learn</span>
-                <span className={styles.techBadge}>Machine Learning</span>
-              </div>
-            </div>
-
-            <div className={styles.skillCard}>
-              <h3>Ferramentas, Plataformas e Redes</h3>
-              <div className={styles.techLista}>
-                <span className={styles.techBadge}>Power BI</span>
-                <span className={styles.techBadge}>PostgreSQL</span>
-                <span className={styles.techBadge}>Git</span>
-                <span className={styles.techBadge}>GitHub</span>
-                <span className={styles.techBadge}>Docker</span>
-                <span className={styles.techBadge}>Linux / Ubuntu</span>
-                <span className={styles.techBadge}>Cisco Packet Tracer</span>
-                <span className={styles.techBadge}>VLANs & VLSM</span>
-              </div>
-            </div>
-          </div>
-        </section>
-      </FadeIn>
-
-      <FadeIn>
-        <section>
-          <h2 className={styles.secaoTitulo}>
-            <span>~/petherson $ ls projetos</span>
-            O Que Eu Construo
-          </h2>
-
-          <div className={styles.filtroLinha}>
-            <button onClick={() => setFiltroAtivo('todos')} className={filtroAtivo === 'todos' ? styles.filtroAtivo : styles.filtroBtn}>
-              Todos
-            </button>
-            <button onClick={() => setFiltroAtivo('dados')} className={filtroAtivo === 'dados' ? styles.filtroAtivo : styles.filtroBtn}>
-              Dados & IA
-            </button>
-            <button onClick={() => setFiltroAtivo('fullstack')} className={filtroAtivo === 'fullstack' ? styles.filtroAtivo : styles.filtroBtn}>
-              Full-Stack & DB
-            </button>
-            <button onClick={() => setFiltroAtivo('infra')} className={filtroAtivo === 'infra' ? styles.filtroAtivo : styles.filtroBtn}>
-              Infraestrutura
-            </button>
-          </div>
-
-          <motion.div 
-            key={filtroAtivo}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.50, ease: "easeInOut" }}
-            className={styles.projetosGrid}
-          >
-            {projetosFiltrados.map((projeto) => (
-              <article key={projeto.id} className={styles.projetoCard}>
-                <div>
-                  <h3>{projeto.titulo}</h3>
-                  <p>{projeto.descricao}</p>
-                </div>
-                <div className={styles.cartaoAcoes}>
-                  <div className={styles.techLista}>
-                    {projeto.techs.map((tech, i) => (
-                      <span key={i} className={styles.techBadge}>{tech}</span>
-                    ))}
-                  </div>
-                  <a href={projeto.link} target="_blank" className={styles.linkProjeto}>Ver código</a>
-                </div>
-              </article>
-            ))}
-          </motion.div>
-        </section>
-      </FadeIn>
-
-      <FadeIn>
-        <section>
-          <h2 className={styles.secaoTitulo}>
-            <span>~/petherson $ cat sobre.txt</span>
-            Sobre Mim
-          </h2>
-          <p className={styles.sobreTexto}>
-            Gosto de entender como a máquina funciona por baixo dos panos, não só de escrever a camada visível. Minha base vai de montar e diagnosticar hardware até construir uma API em Java ou tratar dados em Python. Valorizo fundamentos sólidos: sistemas que funcionam de forma direta, eficiente e bem entendidos por quem os construiu.
-          </p>
-        </section>
-      </FadeIn>
-
-      <FadeIn>
-        <section>
-          <h2 className={styles.secaoTitulo}>
-            <span>~/petherson $ ./contato.sh</span>
-            Vamos Conversar
-          </h2>
-          <div className={styles.contatoCaixa}>
-            <p>Aberto a oportunidades em desenvolvimento full-stack, engenharia de dados ou infraestrutura. Se meu trabalho combina com o que você procura, me chama.</p>
-            <div className={styles.contatoLinha}>
-              <a href="mailto:pethersonzada@gmail.com" className={styles.botaoPrimario}>
-                Enviar e-mail
-              </a>
-              <a href="https://www.linkedin.com/in/pethersonzada" target="_blank" className={styles.botaoSecundario}>
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </section>
-      </FadeIn>
-
-      <footer className={styles.rodape}>
-        <p>Copyright© 2026 Miguel Petherson. Todos os direitos reservados.</p>
-      </footer>
-    </main>
-  );
+  const [filtro, setFiltro] = useState('todos');
+  const projetos = projetosData.filter(p => filtro === 'todos' || p.categoria === filtro);
+  return <main className={styles.container}>
+    <nav className={styles.nav} aria-label="Navegação principal"><a className={styles.marca} href="#inicio">MP<span>.</span></a><div><a href="#projetos">Projetos</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></div></nav>
+    <header id="inicio" className={styles.hero}>
+      <div className={styles.heroConteudo}><p className={styles.eyebrow}>DESENVOLVIMENTO DE SOFTWARE / DADOS</p><h1>Ideias viram <em>software.</em><br/>Problemas viram <em>soluções.</em></h1><p className={styles.lead}>Sou Miguel Petherson. Desenvolvo aplicações, exploro dados e construo projetos que conectam tecnologia a necessidades reais.</p><div className={styles.acoes}><a className={styles.primario} href="#projetos">Explorar projetos <span aria-hidden="true">↗</span></a><a className={styles.secundario} href="https://github.com/pethersonzada" target="_blank" rel="noopener noreferrer">Meu GitHub ↗</a></div></div>
+      <div className={styles.heroLateral} aria-hidden="true"><div className={styles.codigo}><span>01 / SOBRE MIM</span><strong>const developer = &#123;</strong><p>name: 'Miguel Petherson',<br/>focus: ['Full-stack', 'Dados'],<br/>mindset: 'build & learn'</p><strong>&#125;;</strong></div><div className={styles.orbita}>MP<span>+</span></div></div>
+    </header>
+    <section id="projetos" className={styles.secao}><div className={styles.secaoTopo}><div><p className={styles.eyebrow}>01 / PORTFÓLIO</p><h2>Projetos selecionados<span>.</span></h2></div><p>Do desenvolvimento mobile à análise de dados. Cada projeto representa uma etapa prática de aprendizado e construção.</p></div>
+      <div className={styles.filtros} role="group" aria-label="Filtrar projetos">{filtros.map(f=><button key={f.id} type="button" aria-pressed={filtro===f.id} className={filtro===f.id?styles.filtroAtivo:styles.filtro} onClick={()=>setFiltro(f.id)}>{f.nome}</button>)}</div>
+      <motion.div key={filtro} initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} transition={{duration:.25}} className={styles.grid}>{projetos.map((p,i)=><article key={p.id} className={p.destaque?styles.destaque:styles.card}><div className={styles.cardTopo}><span>{String(i+1).padStart(2,'0')} / {p.categoria==='dados'?'DADOS & IA':p.categoria==='infra'?'AUTOMAÇÃO':'DESENVOLVIMENTO'}</span>{p.destaque&&<span className={styles.selo}>PROJETO EM DESTAQUE</span>}</div><div><h3>{p.titulo}</h3><p>{p.descricao}</p></div><div><div className={styles.tags}>{p.techs.map(t=><span key={t}>{t}</span>)}</div><a className={styles.link} href={p.link} target="_blank" rel="noopener noreferrer" aria-label={`Ver repositório de ${p.titulo}`}>Explorar repositório <span aria-hidden="true">↗</span></a></div></article>)}</motion.div>
+      <a className={styles.mais} href="https://github.com/pethersonzada?tab=repositories" target="_blank" rel="noopener noreferrer">Ver todos os repositórios no GitHub ↗</a>
+    </section>
+    <section id="sobre" className={styles.secao}><div className={styles.secaoTopo}><div><p className={styles.eyebrow}>02 / HABILIDADES</p><h2>O que uso para construir<span>.</span></h2></div><p>Ferramentas e tecnologias presentes na minha trajetória de estudos e projetos.</p></div><div className={styles.skills}>{grupos.map((g,i)=><div key={g.titulo} className={styles.skill}><span className={styles.skillNumero}>0{i+1}</span><h3>{g.titulo}</h3><div className={styles.tags}>{g.itens.map(t=><span key={t}>{t}</span>)}</div></div>)}</div><div className={styles.sobre}><p className={styles.eyebrow}>03 / TRAJETÓRIA</p><h2>Curiosidade técnica.<br/><span>Execução prática.</span></h2><p>Estudo Análise e Desenvolvimento de Sistemas e gosto de compreender o caminho completo de uma solução: interface, lógica, dados e infraestrutura. Meu GitHub reúne projetos de aplicações web e mobile, automação e análise de dados.</p></div></section>
+    <section id="contato" className={styles.contato}><p className={styles.eyebrow}>04 / CONTATO</p><h2>Tem um projeto em mente?<br/><span>Vamos conversar.</span></h2><p>Aberto a conversas sobre desenvolvimento de software, dados e oportunidades de colaboração.</p><div className={styles.acoes}><a className={styles.primario} href="mailto:pethersonzada@gmail.com">Enviar e-mail ↗</a><a className={styles.secundario} href="https://www.linkedin.com/in/pethersonzada" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></section>
+    <footer className={styles.footer}><span>© {new Date().getFullYear()} Miguel Petherson</span><a href="#inicio">Voltar ao topo ↑</a></footer>
+  </main>;
 }
