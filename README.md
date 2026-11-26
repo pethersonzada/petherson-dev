@@ -47,7 +47,7 @@ Abra PR para a main e confira o job de validação. Inspecione a prévia da Verc
 
 ## Medição e privacidade
 
-O evento DOM `portfolio:evento` existe apenas na aba, sem histórico, cookie, identificador ou requisição de analytics. O campo `nome` descreve uma ação. `propriedades.projeto` é opcional e só aceita slugs conhecidos. O sinal de cópia ocorre após sucesso da API de clipboard. A navegação entre páginas conta uma visualização por entrada, inclusive ao voltar a um case.
+Sem configuração, o evento DOM `portfolio:evento` existe apenas na aba. O adaptador opcional do Umami exige Website ID configurado, domínio oficial e aceite do visitante. O campo `nome` descreve uma ação. `propriedades.projeto` é opcional e só aceita slugs conhecidos. O sinal de cópia ocorre após sucesso da API de clipboard. A navegação entre páginas conta uma visualização por entrada, inclusive ao voltar a um case.
 
 | Sinal | Disparo |
 | --- | --- |
@@ -70,3 +70,5 @@ No [Search Console](https://search.google.com/search-console/), adicione a propr
 Em cada revisão de dependências rode `npm audit`, confira cadeias afetadas e repita o CI. A política em `next.config.mjs` bloqueia enquadramento, objetos embutidos e base externa. Não estabelece uma allowlist de scripts. Reavalie se incluir scripts externos ou formulários. A aplicação não requer segredos de runtime.
 
 [Auditoria final, roteiro assistivo e limitações](docs/auditoria-final.md) · [Textos e plano de divulgação](docs/divulgacao.md)
+
+[Estado de lançamento, escolha do provedor e passos de ativação](docs/lancamento.md)
