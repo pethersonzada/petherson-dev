@@ -1,11 +1,50 @@
-export const projetosData = [
-  { id:'bevans', titulo:'BeVans · Mobilidade estudantil', descricao:'Aplicativo mobile para transporte escolar e universitário: confirmação de presença, gestão de passageiros, rotas otimizadas e acompanhamento da van no mapa.', categoria:'fullstack', destaque:true, techs:['React Native','Expo','TypeScript','Firebase','Mapbox'], link:'https://github.com/pethersonzada/bevans-frontend' },
-  { id:'marketplace', titulo:'Marketplace de Serviços', descricao:'Projeto de plataforma de serviços, com foco em fluxos de contratação e experiência de uso.', categoria:'fullstack', techs:['Aplicações Web','Marketplace'], link:'https://github.com/pethersonzada/marketplace-services' },
-  { id:'credito', titulo:'Predição de Score de Crédito', descricao:'Projeto de análise preditiva de risco de crédito usando Python e técnicas de machine learning.', categoria:'dados', techs:['Python','Machine Learning'], link:'https://github.com/pethersonzada/credit-score-predictor-IA' },
-  { id:'clientes', titulo:'Análise de Dados de Clientes', descricao:'Exploração e análise de dados de clientes para apoiar decisões com evidências.', categoria:'dados', techs:['Python','Análise de Dados'], link:'https://github.com/pethersonzada/client-data-analysis' },
-  { id:'dashboard', titulo:'Dashboard Comercial', descricao:'Painel de análise de vendas e indicadores comerciais.', categoria:'dados', techs:['Power BI','Dados'], link:'https://github.com/pethersonzada/dashboard-comercial' },
-  { id:'biblioteca', titulo:'Sistema de Biblioteca Virtual', descricao:'Projeto de sistema e modelagem de dados para uma biblioteca virtual.', categoria:'fullstack', techs:['SQL','Modelagem de Dados'], link:'https://github.com/pethersonzada/sistema-biblioteca-virtual' },
-  { id:'vought', titulo:'Vought Connect', descricao:'Projeto de aplicação web com foco em interface e experiência de navegação.', categoria:'fullstack', techs:['Web','Interface'], link:'https://github.com/pethersonzada/vought-connect' },
-  { id:'face', titulo:'Captura Facial', descricao:'Experimento de captura e processamento de imagens de rostos com Python.', categoria:'dados', techs:['Python','Visão Computacional'], link:'https://github.com/pethersonzada/face-capture' },
-  { id:'automacao', titulo:'Automação com Python', descricao:'Automação de tarefas repetitivas usando scripts Python.', categoria:'infra', techs:['Python','Automação'], link:'https://github.com/pethersonzada/py-auto-entry' }
-];
+const base = "https://github.com/pethersonzada/";
+export const projetos = [
+  [
+    "Modelo de score de crédito",
+    "Dados",
+    "Experimento em Python para estimar a categoria de score a partir de registros de clientes.",
+    "credit-score-predictor-IA",
+  ],
+  [
+    "Cancelamento de clientes",
+    "Dados",
+    "Notebook e script Python para explorar registros de cancelamento.",
+    "client-data-analysis",
+  ],
+  [
+    "Dashboard comercial",
+    "Dados",
+    "Painel Power BI acompanhado da planilha de origem e da exportação em PDF.",
+    "dashboard-comercial",
+  ],
+  [
+    "Biblioteca virtual",
+    "Aplicações",
+    "Modelagem de dados com diagramas no brModelo e no draw.io.",
+    "sistema-biblioteca-virtual",
+  ],
+  [
+    "Vought Connect",
+    "Aplicações",
+    "Projeto de interface web disponível no diretório projeto-vought.",
+    "vought-connect",
+  ],
+  [
+    "Captura facial",
+    "Dados",
+    "Experimentos de reconhecimento facial com LBPH e face_recognition.",
+    "face-capture",
+  ],
+  [
+    "Cadastro automatizado",
+    "Automação",
+    "Script Python e arquivo de produtos para automatizar a entrada de dados.",
+    "py-auto-entry",
+  ],
+].map(([nome, grupo, resumo, repo]) => ({
+  nome,
+  grupo,
+  resumo,
+  url: base + repo,
+}));

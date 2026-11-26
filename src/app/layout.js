@@ -1,23 +1,42 @@
+import Link from "next/link";
 import "./globals.css";
-
+import Contato from "./components/Contato";
+import { origin } from "./data/site";
 export const metadata = {
-  title: { default: "Miguel Petherson | Desenvolvedor de Software", template: "%s | Miguel Petherson" },
-  description: "Portfólio de Miguel Petherson. Projetos de desenvolvimento web e mobile, React Native, Next.js, Java, Python e análise de dados. Conheça o BeVans.",
-  applicationName: "Portfólio Miguel Petherson",
-  keywords: ["Miguel Petherson", "desenvolvedor de software", "portfólio", "BeVans", "React Native", "Next.js", "Python", "Java", "dados"],
-  authors: [{ name: "Miguel Petherson", url: "https://github.com/pethersonzada" }],
-  creator: "Miguel Petherson",
-  robots: { index: true, follow: true },
-  openGraph: {
-    title: "Miguel Petherson | Desenvolvimento de Software",
-    description: "Aplicações web e mobile, projetos de dados e o case BeVans.",
-    type: "website",
-    locale: "pt_BR",
-    siteName: "Miguel Petherson — Portfólio",
-  },
-  twitter: { card: "summary", title: "Miguel Petherson | Desenvolvedor de Software", description: "Conheça meus projetos, incluindo o BeVans." },
+  metadataBase: new URL(origin),
+  title: { default: "Miguel Petherson", template: "%s | Miguel Petherson" },
 };
-export const viewport = { width: "device-width", initialScale: 1, themeColor: "#0a0c0f" };
-export default function RootLayout({ children }) {
-  return <html lang="pt-BR"><body>{children}</body></html>;
+export default function Layout({ children }) {
+  return (
+    <html lang="pt-BR">
+      <body>
+        <a className="skip" href="#conteudo">
+          Pular para o conteúdo
+        </a>
+        <header className="bar wrap">
+          <Link
+            className="brand"
+            href="/"
+            aria-label="Miguel Petherson, início"
+          >
+            mp<span>.</span>
+          </Link>
+          <nav aria-label="Principal">
+            <Link href="/projetos">Projetos</Link>
+            <Link href="/#servicos">Serviços</Link>
+            <Link href="/#sobre">Sobre</Link>
+            <a href="#contato">Contato</a>
+          </nav>
+        </header>
+        <main className="wrap" id="conteudo" tabIndex={-1}>
+          {children}
+          <Contato />
+        </main>
+        <footer className="wrap bar">
+          <span>Miguel Petherson</span>
+          <a href="https://github.com/pethersonzada">GitHub ↗</a>
+        </footer>
+      </body>
+    </html>
+  );
 }
