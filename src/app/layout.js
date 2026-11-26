@@ -36,7 +36,7 @@ export default function Layout({ children }) {
           <Contato />
         </main>
         <footer className="wrap bar">
-          <span>Miguel Petherson</span>
+          <span>© {new Date().getFullYear()} Miguel Petherson</span>
           <a data-evento="github_click" href="https://github.com/pethersonzada">GitHub ↗</a>
         </footer>
         <Medicao slugs={cases.map(p => p.slug)} />

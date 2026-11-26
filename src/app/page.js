@@ -27,13 +27,12 @@ export default function Home() {
       />
       <section className="hero">
         <div>
-          <p className="kicker">Miguel Petherson Silva</p>
+          <p className="kicker hero-eyebrow"><span aria-hidden="true"/> Miguel Petherson Silva</p>
           <h1>
-            Desenvolvedor <em>fullstack.</em>
+            Desenvolvedor <em>full stack.</em>
           </h1>
           <p className="lead">
-            Crio aplicações web e mobile para organizar operações do dia a dia,
-            da confirmação de passageiros ao atendimento de chamados de TI.
+            Desenvolvo aplicações web, mobile e APIs que transformam problemas reais em sistemas funcionais. Do planejamento à publicação.
           </p>
           <div className="actions">
             <a className="button primary" href="#projetos">
@@ -43,7 +42,16 @@ export default function Home() {
               Entrar em contato
             </a>
           </div>
+          <div className="hero-stack" aria-label="Principais tecnologias"><span>Java</span><span>Spring Boot</span><span>React Native</span><span>Next.js</span><span>Python</span></div>
         </div>
+        <aside className="profile-card" aria-label="Perfil de Miguel Petherson">
+          <div className="profile-photo" aria-hidden="true"><span>MP</span></div>
+          <div><p className="kicker">Desenvolvimento de software</p><h2>Miguel Petherson</h2><p>Estudante de Análise e Desenvolvimento de Sistemas · UNINASSAU</p></div>
+          <div className="profile-links"><a data-evento="github_click" href="https://github.com/pethersonzada">GitHub ↗</a><a data-evento="linkedin_click" href="https://www.linkedin.com/in/pethersonzada/">LinkedIn ↗</a></div>
+        </aside>
+      </section>
+      <section className="flagship" aria-labelledby="flagship-title">
+        <div className="flagship-copy"><p className="kicker">Projeto em destaque / 01</p><h2 id="flagship-title">BeVans</h2><p className="lead">Um ecossistema para organizar o transporte por vans.</p><p>Aplicativo Android, plataforma web, API Java e assistente de suporte. Desenvolvimento técnico de ponta a ponta, apresentado na faculdade em novembro de 2026.</p><div className="actions"><Link className="button primary" href="/projetos/bevans">Explorar o projeto →</Link><a className="button" data-evento="demo_click" href="https://bevans-webapp.vercel.app/">Visitar plataforma ↗</a></div></div>
         <Link
           className="feature"
           href="/projetos/bevans"
@@ -72,6 +80,7 @@ export default function Home() {
         </Link>
       </section>
       <section id="projetos">
+        <p className="kicker section-index">02 / Projetos</p>
         <div className="heading">
           <h2>Projetos selecionados</h2>
           <Link href="/projetos">Catálogo completo →</Link>
@@ -83,6 +92,7 @@ export default function Home() {
         </div>
       </section>
       <section id="servicos">
+        <p className="kicker section-index">03 / Serviços</p>
         <h2>Como posso ajudar</h2>
         <div className="rows">
           {[
@@ -114,6 +124,7 @@ export default function Home() {
         </a>
       </section>
       <section id="sobre">
+        <p className="kicker section-index">04 / Sobre</p>
         <h2>Sobre mim</h2>
         <p className="lead">
           Sou Miguel Petherson, estudante de Análise e Desenvolvimento de
@@ -127,6 +138,7 @@ export default function Home() {
           <Link href="/projetos">catálogo</Link> também reúne experimentos de
           análise de dados e automação.
         </p>
+        <div className="skill-grid">{[["Backend","Java · Spring Boot · Python · FastAPI"],["Frontend e mobile","React · Next.js · React Native · Expo"],["Dados e infraestrutura","PostgreSQL · SQL · Firebase · Docker · Oracle Cloud"]].map(([title,body])=><article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div>
       </section>
     </>
   );

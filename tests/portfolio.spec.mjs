@@ -141,3 +141,12 @@ test("Ativações de canais emitem um sinal por ação", async ({ page, context 
   await page.locator('a[data-evento="demo_click"]').first().click();
   expect(await page.evaluate(() => window.sinais.slice(-2))).toEqual(["case_study_view","demo_click"]);
 });
+
+test("Home apresenta perfil e projeto principal com links funcionais", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".profile-card")).toContainText("Miguel Petherson");
+  await expect(page.locator(".profile-card a").first()).toHaveAttribute("href", "https://github.com/pethersonzada");
+  await expect(page.locator(".flagship")).toContainText("BeVans");
+  await expect(page.getByRole("link", { name: "Explorar o projeto" })).toHaveAttribute("href", "/projetos/bevans");
+  await expect(page.locator(".skill-grid article")).toHaveCount(3);
+});

@@ -24,6 +24,11 @@ export function GalleryImage({ item, mobile = false }) {
 export function ProjectCard({ project }) {
   return (
     <article className="project">
+      <div className={"project-visual"+(project.slug==="bevans"?" mobile-visual":"")} aria-hidden="true">
+        <Image src={"/cases/"+project.images[0][0]+".webp"} alt="" width={project.slug==="bevans"?355:1280} height={project.slug==="bevans"?770:850} sizes="(max-width: 760px) 90vw, 360px"/>
+        {project.slug==="bevans" && <Image src="/cases/rotas.webp" alt="" width={355} height={770} sizes="(max-width: 760px) 35vw, 140px"/>}
+      </div>
+      <div className="project-content">
       <span className="kicker">{project.type}</span>
       <h3>
         <Link href={`/projetos/${project.slug}`}>{project.name}</Link>
@@ -33,6 +38,7 @@ export function ProjectCard({ project }) {
       <Link className="textlink" href={`/projetos/${project.slug}`}>
         Ver case {project.name} →
       </Link>
+      </div>
     </article>
   );
 }

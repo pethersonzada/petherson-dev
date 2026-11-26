@@ -1,6 +1,8 @@
 # Portfólio de Miguel Petherson
 
-Portfólio em português para quem avalia uma contratação fullstack ou quer discutir um projeto. A página inicial apresenta as entregas, o catálogo reúne os repositórios e cada case documenta decisões, telas reais e limitações.
+Portfólio pessoal de Miguel Petherson, estudante de Análise e Desenvolvimento de Sistemas, com foco em desenvolvimento full stack, aplicações web e mobile, APIs e automação. A página inicial apresenta o perfil, o BeVans em destaque, serviços e projetos selecionados. O catálogo reúne os repositórios e cada case documenta decisões, telas reais e limitações.
+
+**Site:** https://petherson-dev.vercel.app · **GitHub:** https://github.com/pethersonzada
 
 ## Executar
 

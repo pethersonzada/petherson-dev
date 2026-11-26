@@ -13,6 +13,8 @@ export const cases = [
       "PostgreSQL",
       "Firebase",
       "Mapbox",
+      "Next.js",
+      "Oracle Cloud",
     ],
     sections: [
       [
@@ -21,7 +23,7 @@ export const cases = [
       ],
       [
         "Minha contribuição",
-        "Trabalhei no app Android, nas regras da API e no painel web. Um exemplo no backend é o cálculo da próxima parada do passageiro. No webapp, ajustei e testei o seletor de tema do painel em telas pequenas.",
+        "Fui responsável por todo o desenvolvimento técnico do BeVans: aplicativo Android, backend Java, banco de dados, plataforma web, assistente de suporte e infraestrutura. O projeto foi apresentado pelo grupo na UNINASSAU em novembro de 2026. Entre as decisões técnicas estão o cálculo da próxima parada do passageiro e a adaptação do painel web a telas pequenas.",
       ],
       [
         "Do cadastro ao embarque",
