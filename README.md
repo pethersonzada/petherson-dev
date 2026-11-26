@@ -4,6 +4,13 @@ Portfólio pessoal de Miguel Petherson, estudante de Análise e Desenvolvimento 
 
 **Site:** https://petherson-dev.vercel.app · **GitHub:** https://github.com/pethersonzada
 
+## Recursos
+
+- Temas automático, claro e escuro, persistidos localmente; animações respeitam preferência por movimento reduzido.
+- Trajetória acadêmica e profissional; currículo web em /curriculo com impressão ou salvamento em PDF.
+- Demonstração guiada com capturas reais do BeVans e seção de evidências técnicas.
+- O PDF original aprovado só aparece como download se estiver em public/Miguel-Petherson-Curriculo.pdf e corresponder ao SHA-256 da issue #20. Não substituir por um arquivo diferente.
+
 ## Executar
 
 Use Node.js 24 e npm. Na raiz do repositório:
@@ -65,7 +72,7 @@ Após aprovação de um provedor, acompanhe visitantes e origem no painel agrega
 
 ## Currículo, SEO e manutenção
 
-Após aprovação da versão final (#20), coloque apenas o PDF aprovado em `public/`, acrescente um link de download com nome acessível e `data-evento="resume_download"`. Teste a resposta HTTP, o tipo PDF, a extração de texto, o download em desktop e a abertura no celular antes de integrar. Não versione rascunhos com dados pessoais.
+A página de currículo e o componente de download já estão implementados. Coloque o PDF aprovado da issue #20 em `public/Miguel-Petherson-Curriculo.pdf`; o componente valida o SHA-256 antes de expor o link. Teste a resposta HTTP, o tipo PDF, a extração de texto, o download em desktop e a abertura no celular antes de integrar. Não versione rascunhos com dados pessoais.
 
 No [Search Console](https://search.google.com/search-console/), adicione a propriedade por **prefixo de URL** `https://petherson-dev.vercel.app/`. Escolha a verificação por tag HTML. Configure **somente o valor content** como `GOOGLE_SITE_VERIFICATION` no projeto Vercel, ambiente Production, e faça um novo build após aprovação. Confira a meta tag no HTML e clique em Verificar. Em Sitemaps, envie `sitemap.xml`; em Inspeção de URL, verifique as cinco URLs do sitemap, teste a URL publicada e solicite indexação se apropriado. A confirmação de propriedade e a indexação são independentes. [Guia de verificação](https://support.google.com/webmasters/answer/9008080)
 

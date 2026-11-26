@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Trajectory from "./components/Trajectory";
+import Evidence from "./components/Evidence";
+import ResumeDownload from "./components/ResumeDownload";
 import Link from "next/link";
 import { cases } from "./data/cases";
 import { pageMeta, origin } from "./data/site";
@@ -41,17 +44,19 @@ export default function Home() {
             <a className="button" data-evento="contact_click" href="#contato">
               Entrar em contato
             </a>
+            <Link className="button resume-cta" href="/curriculo">Currículo →</Link>
+            <ResumeDownload/>
           </div>
           <div className="hero-stack" aria-label="Principais tecnologias"><span>Java</span><span>Spring Boot</span><span>React Native</span><span>Next.js</span><span>Python</span></div>
         </div>
         <aside className="profile-card" aria-label="Perfil de Miguel Petherson">
-          <div className="profile-photo" aria-hidden="true"><span>MP</span></div>
+          <div className="profile-photo" role="img" aria-label="Foto de perfil de Miguel Petherson"><span aria-hidden="true">MP</span></div>
           <div><p className="kicker">Desenvolvimento de software</p><h2>Miguel Petherson</h2><p>Estudante de Análise e Desenvolvimento de Sistemas · UNINASSAU</p></div>
           <div className="profile-links"><a data-evento="github_click" href="https://github.com/pethersonzada">GitHub ↗</a><a data-evento="linkedin_click" href="https://www.linkedin.com/in/pethersonzada/">LinkedIn ↗</a></div>
         </aside>
       </section>
       <section className="flagship" aria-labelledby="flagship-title">
-        <div className="flagship-copy"><p className="kicker">Projeto em destaque / 01</p><h2 id="flagship-title">BeVans</h2><p className="lead">Um ecossistema para organizar o transporte por vans.</p><p>Aplicativo Android, plataforma web, API Java e assistente de suporte. Desenvolvimento técnico de ponta a ponta, apresentado na faculdade em novembro de 2026.</p><div className="actions"><Link className="button primary" href="/projetos/bevans">Explorar o projeto →</Link><a className="button" data-evento="demo_click" href="https://bevans-webapp.vercel.app/">Visitar plataforma ↗</a></div></div>
+        <div className="flagship-copy"><p className="kicker">Projeto em destaque / 01</p><h2 id="flagship-title">BeVans</h2><p className="lead">Um ecossistema para organizar o transporte por vans.</p><p>Aplicativo Android, plataforma web, API Java e assistente de suporte. Desenvolvimento técnico de ponta a ponta, apresentado na faculdade em novembro de 2026.</p><div className="actions"><Link className="button primary" href="/projetos/bevans">Explorar o projeto →</Link><Link className="button" href="/projetos/bevans#demonstracao">Ver demonstração</Link><a className="button" data-evento="demo_click" href="https://bevans-webapp.vercel.app/">Visitar plataforma ↗</a></div></div>
         <Link
           className="feature"
           href="/projetos/bevans"
@@ -91,6 +96,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <Evidence/>
       <section id="servicos">
         <p className="kicker section-index">03 / Serviços</p>
         <h2>Como posso ajudar</h2>
@@ -140,6 +146,7 @@ export default function Home() {
         </p>
         <div className="skill-grid">{[["Backend","Java · Spring Boot · Python · FastAPI"],["Frontend e mobile","React · Next.js · React Native · Expo"],["Dados e infraestrutura","PostgreSQL · SQL · Firebase · Docker · Oracle Cloud"]].map(([title,body])=><article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div>
       </section>
+      <Trajectory/>
     </>
   );
 }

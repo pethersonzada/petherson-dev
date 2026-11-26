@@ -3,6 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 const routes = [
   "/",
   "/projetos",
+  "/curriculo",
   "/projetos/bevans",
   "/projetos/marketplace-de-servicos",
   "/projetos/helpdesk-ti",
@@ -161,4 +162,41 @@ test("Tipografia editorial usa famílias distintas com fontes carregadas", async
   expect(fonts.body.toLowerCase()).toContain("inter");
   expect(fonts.heading.toLowerCase()).toContain("manrope");
   expect(fonts.body).not.toEqual(fonts.heading);
+});
+
+test("Temas respeitam o sistema e persistem as escolhas", async ({page}) => {
+  await page.emulateMedia({colorScheme:"dark"});
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveAttribute("data-theme","dark");
+  await page.getByRole("button",{name:/Tema: Automático/}).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme","light");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme","light");
+  const result=await new AxeBuilder({page}).withTags(["wcag2a","wcag2aa","wcag21a","wcag21aa"]).analyze();
+  expect(result.violations.map(v=>v.id)).toEqual([]);
+  await page.getByRole("button",{name:/Tema: Claro/}).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme","dark");
+  await page.getByRole("button",{name:/Tema: Escuro/}).click();
+  await page.emulateMedia({colorScheme:"light"});
+  await expect(page.locator("html")).toHaveAttribute("data-theme","light");
+});
+test("Trajetória e currículo exibem formação e experiência verificáveis",async({page})=>{
+  await page.goto("/");
+  await expect(page.locator("#trajetoria")).toContainText("Novo Atacarejo");
+  await page.getByRole("link",{name:"Currículo",exact:true}).first().click();
+  await expect(page).toHaveURL(/curriculo$/);
+  await expect(page.locator(".resume-paper")).toContainText("ETE Maria José Vasconcelos");
+  await expect(page.getByRole("button",{name:"Imprimir ou salvar em PDF"})).toBeVisible();
+  await page.emulateMedia({media:"print"});
+  await expect(page.locator(".resume-paper")).toBeVisible();
+  await expect(page.locator(".resume-tools")).toBeHidden();
+});
+test("Demonstração BeVans permite percorrer as capturas reais",async({page})=>{
+  await page.goto("/projetos/bevans#demonstracao");
+  await expect(page.locator(".demo-copy h3")).toHaveText("Planejar a turma");
+  await page.getByRole("button",{name:"Próxima →"}).click();
+  await expect(page.locator(".demo-copy h3")).toHaveText("Confirmar a criação");
+  await page.getByRole("button",{name:"03 Consultar rotas públicas"}).click();
+  await expect(page.locator(".demo-copy h3")).toHaveText("Consultar rotas públicas");
+  await expect(page.getByRole("button",{name:"Próxima →"})).toBeDisabled();
 });

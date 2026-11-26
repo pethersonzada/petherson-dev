@@ -1,4 +1,5 @@
 import Image from "next/image";
+import DemoBevans from "../../components/DemoBevans";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cases } from "../../data/cases";
@@ -38,6 +39,7 @@ export default async function Case({ params }) {
             ))}
           </div>
         </header>
+        {mobile&&<DemoBevans/>}
         <section>
           <h2>Telas do projeto</h2>
           <div className={mobile ? "gallery mobile" : "gallery"}>
