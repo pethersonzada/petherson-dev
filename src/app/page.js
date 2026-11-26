@@ -4,7 +4,7 @@ import { cases } from "./data/cases";
 import { pageMeta, origin } from "./data/site";
 import { ProjectCard } from "./components/Projects";
 export const metadata = pageMeta(
-  "Desenvolvedor Fullstack",
+  "Miguel Petherson | Desenvolvedor Fullstack",
   "Conheça Miguel Petherson e seus projetos de aplicações web, mobile e APIs, com código, telas reais e decisões técnicas.",
   "/",
 );
@@ -47,7 +47,7 @@ export default function Home() {
         <Link
           className="feature"
           href="/projetos/bevans"
-          aria-label="Conhecer o case BeVans"
+          aria-labelledby="destaque-bevans"
         >
           <div className="devices">
             <Image
@@ -65,7 +65,7 @@ export default function Home() {
               alt="Busca de rotas públicas no Android"
             />
           </div>
-          <div className="featureCaption">
+          <div className="featureCaption" id="destaque-bevans">
             <strong>BeVans</strong>
             <span>Explorar case ↗</span>
           </div>

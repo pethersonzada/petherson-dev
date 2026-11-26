@@ -21,7 +21,7 @@ export default function Layout({ children }) {
           <Link
             className="brand"
             href="/"
-            aria-label="Miguel Petherson, início"
+            aria-label="mp. Miguel Petherson, início"
           >
             mp<span>.</span>
           </Link>

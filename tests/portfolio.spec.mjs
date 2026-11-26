@@ -29,7 +29,7 @@ for (const route of routes) {
         .toBe(true);
     }
     const result = await new AxeBuilder({ page })
-      .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22a", "wcag22aa"])
       .analyze();
     expect(result.violations.map((v) => v.id)).toEqual([]);
     expect(errors).toEqual([]);
@@ -116,4 +116,28 @@ test("Cabeçalhos de defesa e 404 preservam a navegação", async ({page}) => {
   expect(result.headers()["x-content-type-options"]).toBe("nosniff");
   await page.getByRole("link", {name:"Voltar aos projetos"}).click();
   await expect(page).toHaveURL(/\/projetos$/);
+});
+
+test("Ativações de canais emitem um sinal por ação", async ({ page, context }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.addInitScript(() => {
+    window.sinais = [];
+    window.addEventListener("portfolio:evento", e => window.sinais.push(e.detail.nome));
+    // Mantém o teste nos documentos locais e preserva a propagação normal do clique.
+    document.addEventListener("click", e => {
+      if (e.target.closest?.('a[href^="https:"], a[href^="mailto:"]')) e.preventDefault();
+    }, true);
+  });
+  await page.goto("/");
+  for (const nome of ["service_interest", "email_click", "linkedin_click", "github_click"]) {
+    await page.locator(`a[data-evento="${nome}"]`).first().click();
+  }
+  await page.getByRole("button", {name:"Copiar e-mail"}).click();
+  await expect(page.getByRole("status")).toHaveText("E-mail copiado.");
+  expect(await page.evaluate(() => window.sinais)).toEqual([
+    "service_interest", "email_click", "linkedin_click", "github_click", "email_copy",
+  ]);
+  await page.getByRole("link", {name:"Ver case BeVans"}).click();
+  await page.locator('a[data-evento="demo_click"]').first().click();
+  expect(await page.evaluate(() => window.sinais.slice(-2))).toEqual(["case_study_view","demo_click"]);
 });
