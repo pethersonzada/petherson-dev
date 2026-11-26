@@ -1,0 +1,82 @@
+/* Tipografia editorial: Manrope para títulos, Inter para leitura e interface. */
+:root {
+  --type-ui: var(--font-body), Arial, sans-serif;
+  --type-title: var(--font-display), var(--font-body), Arial, sans-serif;
+  --type-body: 1rem;
+  --type-caption: .875rem;
+}
+body {
+  font-family: var(--type-ui);
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0;
+  font-synthesis: none;
+}
+button,input,select,textarea {font-family: var(--type-ui);}
+h1,h2,h3 {
+  font-family: var(--type-title);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -.032em;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+h1 {font-size: clamp(2.5rem, 5.4vw, 4.8rem);line-height: 1.1;letter-spacing: -.048em;}
+h2 {font-size: clamp(1.85rem, 3.25vw, 2.8rem);letter-spacing: -.035em;}
+h3 {font-size: clamp(1.2rem, 1.65vw, 1.5rem);letter-spacing: -.025em;}
+.hero h1 {
+  font-size: clamp(2.65rem, 5.65vw, 5rem);
+  font-weight: 750;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+.hero > div,.flagship-copy {min-width: 0;}
+.hero h1 em {font-weight: 650;letter-spacing: inherit;}
+.hero .lead,.lead {font-size: clamp(1.05rem, 1.35vw, 1.25rem);line-height: 1.65;letter-spacing: -.012em;}
+p {text-wrap: pretty;line-height: 1.7;}
+.kicker {font-family: var(--type-ui);font-size: .8rem;font-weight: 600;line-height: 1.5;letter-spacing: .055em;}
+.hero-eyebrow {font-size: .85rem;letter-spacing: .015em;}
+.section-index {font-variant-numeric: tabular-nums;letter-spacing: .055em;}
+.stack,figcaption {font-family: var(--type-ui);font-size: var(--type-caption);font-weight: 400;line-height: 1.6;letter-spacing: 0;}
+.brand {font-family: var(--type-title);font-size: 1.95rem;font-weight: 800;line-height: 1.05;letter-spacing: -.065em;}
+.bar nav a,.button,button {font-size: .9375rem;font-weight: 550;line-height: 1.4;letter-spacing: 0;}
+.primary,button[aria-pressed="true"] {font-weight: 650;}
+.hero-stack span {font-size: .8125rem;font-weight: 500;letter-spacing: 0;}
+.profile-card h2 {font-size: clamp(1.4rem, 2.05vw, 1.9rem);font-weight: 750;letter-spacing: -.03em;}
+.profile-card p:not(.kicker) {font-size: .9375rem;line-height: 1.6;}
+.profile-links a {font-size: .875rem;font-weight: 550;}
+.flagship-copy h2 {font-size: clamp(2.25rem, 4vw, 3.65rem);font-weight: 750;}
+.featureCaption strong {font-family: var(--type-title);font-weight: 750;}
+.featureCaption span,.heading>a,.textlink {font-size: .9375rem;font-weight: 550;}
+.project-content h3 {font-size: clamp(1.25rem, 1.6vw, 1.5rem);font-weight: 750;line-height: 1.25;}
+.project-content p {font-size: .9375rem;line-height: 1.65;}
+.project-content .kicker {font-size: .75rem;line-height: 1.5;letter-spacing: .02em;}
+.project-content .stack {font-size: .8125rem;line-height: 1.55;}
+.project-content .textlink {font-size: .875rem;font-weight: 600;}
+.rows h3,.skill-grid h3 {font-weight: 700;letter-spacing: -.02em;}
+.skill-grid h3 {font-size: 1.125rem;}
+.skill-grid p {font-size: .9375rem;}
+.casebody h2 {font-size: clamp(1.35rem, 2vw, 1.7rem);line-height: 1.3;}
+.casebody p {font-size: 1.025rem;line-height: 1.8;}
+.gallery figcaption {font-size: .875rem;line-height: 1.6;}
+.contact small,.medicao {font-size: .875rem;line-height: 1.55;}
+footer {font-size: .875rem;}
+@media (max-width: 900px) and (min-width: 761px) {
+  .hero h1 {font-size: clamp(2.25rem, 5.1vw, 3rem);}
+}
+@media (max-width: 760px) {
+  .hero h1 {font-size: clamp(2.55rem, 8.8vw, 4.1rem);}
+  h2 {font-size: clamp(1.75rem, 5.5vw, 2.35rem);}
+  .profile-card h2 {font-size: 1.35rem;}
+  .casebody p {font-size: 1rem;}
+}
+@media (max-width: 420px) {
+  .hero h1 {font-size: clamp(2rem, 9.5vw, 2.8rem);}
+  .bar nav a {font-size: .825rem;}
+  .button,button {font-size: .875rem;}
+  .profile-card h2 {font-size: 1.2rem;}
+  .profile-card p:not(.kicker) {font-size: .875rem;}
+  .hero .lead {font-size: 1.05rem;}
+  .hero-eyebrow {font-size: .8rem;}
+}

@@ -39,7 +39,7 @@ Os testes sobem o build em 127.0.0.1:3190. A porta precisa estar livre. Para usa
 
 Inclua nome, slug exclusivo, contexto, status, stack, contribuição, fontes, limitações e capturas no registro do case. Use imagens autorizadas e revise as telas para excluir dados pessoais. Adicione dimensões e descrição quando adotar um novo formato de imagem. A rota e o sitemap são gerados a partir do registro. Revise a seleção de destaque na home ao ampliar a coleção. Para um projeto secundário, acrescente uma entrada em `data/projetos.js`.
 
-O projeto mantém JavaScript e o App Router do Next.js. A organização por registros evita duplicação de páginas. Uma migração de linguagem acrescentaria custo sem resolver o problema de navegação. CSS local e uma pilha de fontes do sistema evitam a requisição a um provedor de fontes.
+O projeto mantém JavaScript e o App Router do Next.js. A organização por registros evita duplicação de páginas. Uma migração de linguagem acrescentaria custo sem resolver o problema de navegação. Inter e Manrope são carregadas por next/font, com otimização e hospedagem dos arquivos de fonte pelo próprio Next.js. O navegador não precisa acessar o Google Fonts.
 
 ## Revisão e deploy
 

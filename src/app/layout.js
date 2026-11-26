@@ -1,9 +1,14 @@
+import { Inter, Manrope } from "next/font/google";
 import Medicao from "./components/Medicao";
 import { cases } from "./data/cases";
 import Link from "next/link";
 import "./globals.css";
+import "./typography.css";
 import Contato from "./components/Contato";
 import { origin } from "./data/site";
+const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-display", display: "swap" });
+
 export const metadata = {
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
   metadataBase: new URL(origin),
@@ -11,7 +16,7 @@ export const metadata = {
 };
 export default function Layout({ children }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${inter.variable} ${manrope.variable}`}>
       <body>
         <a className="skip" href="#conteudo">
           Pular para o conteúdo

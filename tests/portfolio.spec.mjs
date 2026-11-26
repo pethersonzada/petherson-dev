@@ -150,3 +150,15 @@ test("Home apresenta perfil e projeto principal com links funcionais", async ({ 
   await expect(page.getByRole("link", { name: "Explorar o projeto" })).toHaveAttribute("href", "/projetos/bevans");
   await expect(page.locator(".skill-grid article")).toHaveCount(3);
 });
+
+test("Tipografia editorial usa famílias distintas com fontes carregadas", async ({page}) => {
+  await page.goto("/");
+  await page.evaluate(() => document.fonts.ready);
+  const fonts = await page.evaluate(() => ({
+    body: getComputedStyle(document.body).fontFamily,
+    heading: getComputedStyle(document.querySelector("h1")).fontFamily,
+  }));
+  expect(fonts.body.toLowerCase()).toContain("inter");
+  expect(fonts.heading.toLowerCase()).toContain("manrope");
+  expect(fonts.body).not.toEqual(fonts.heading);
+});
