@@ -30,7 +30,7 @@ export default function Catalogo({ projetos }) {
         {filtrados.map((p) => (
           <div key={p.nome}>
             <h3>
-              <a href={p.url}>{p.nome} ↗</a>
+              <a data-evento="github_click" href={p.url}>{p.nome} ↗</a>
             </h3>
             <p>{p.resumo}</p>
           </div>

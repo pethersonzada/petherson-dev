@@ -29,7 +29,7 @@ Os testes sobem o build em 127.0.0.1:3190. A porta precisa estar livre. Para usa
 - `src/app/projetos/page.js` reúne cases e catálogo secundário com filtro.
 - `src/app/projetos/[slug]/page.js` gera páginas estáticas e metadados a partir de `data/cases.js`.
 - `src/app/data/projetos.js` contém o catálogo secundário. `data/site.js` centraliza o domínio canônico e os metadados sociais.
-- `src/app/components/` reúne cards, galeria, filtro e cópia de e-mail. Só o filtro e o contato exigem estado no navegador.
+- `src/app/components/` reúne cards, galeria, filtro e cópia de e-mail. Filtro e contato usam estado no navegador. Medicao observa navegação e ativações para emitir sinais locais.
 - `public/cases/` contém capturas WebP. A galeria abre o arquivo em resolução maior. As origens estão na [auditoria](docs/auditoria.md).
 - `tests/` e `.github/workflows/portfolio.yml` verificam navegação, acessibilidade, contato, responsividade e indexação.
 
@@ -45,16 +45,28 @@ Abra PR para a main e confira o job de validação. Inspecione a prévia da Verc
 
 [Produção](https://petherson-dev.vercel.app) · [Backlog](https://github.com/pethersonzada/petherson-dev/issues) · [Auditoria e evidências](docs/auditoria.md)
 
-## Mensuração futura
+## Medição e privacidade
 
-O site usa canais diretos. A cópia de e-mail roda no navegador. Para uma medição futura, o responsável deve aprovar fornecedor, finalidade, base de tratamento, prazo de retenção e custo antes de ativar coleta.
+O evento DOM `portfolio:evento` existe apenas na aba, sem histórico, cookie, identificador ou requisição de analytics. O campo `nome` descreve uma ação. `propriedades.projeto` é opcional e só aceita slugs conhecidos. O sinal de cópia ocorre após sucesso da API de clipboard. A navegação entre páginas conta uma visualização por entrada, inclusive ao voltar a um case.
 
-| Evento proposto | Disparo | Campos permitidos |
-| --- | --- | --- |
-| catalogo_aberto | Entrada em /projetos | rota |
-| case_aberto | Entrada em um case | slug |
-| contato_clicado | Abertura de e-mail, cópia concluída ou LinkedIn | canal, rota |
-| fonte_clicada | Abertura do GitHub ou de uma demo | tipo, slug |
-| curriculo_baixado | Download de arquivo aprovado, quando existir | rota |
+| Sinal | Disparo |
+| --- | --- |
+| project_view / case_study_view | Entrada no catálogo / entrada no case |
+| contact_click / service_interest | Acesso à seção de contato pela navegação ou hero / pela seção de serviços |
+| email_click / email_copy | Abertura do cliente de e-mail / cópia concluída |
+| linkedin_click / github_click / demo_click | Abertura do canal ou destino correspondente |
+| resume_download | Reservado para o link do PDF após aprovação do titular |
 
-Compare cliques de contato após a visita a um case com visitas ao mesmo case, declarando janela e denominador. Cliques não medem propostas, entrevistas ou contratações. Evite e-mail, URL completa, parâmetros, conteúdo de mensagem e identificadores persistentes nos eventos.
+Para conferir na prévia, registre um listener para `portfolio:evento` no console e navegue por links internos. O teste Playwright instala o listener antes de carregar a página. Os sinais desaparecem ao encerrar a aba. Ativar um destino exige a decisão da issue #21. No plano Hobby, o Vercel Web Analytics oferece visualizações; eventos personalizados dependem de plano compatível. [Limites oficiais](https://vercel.com/docs/analytics/limits-and-pricing)
+
+Após aprovação de um provedor, acompanhe visitantes e origem no painel agregado. Compare entradas por slug. Para taxas por visita, use sessões com abertura de case, interação em CTA, download ou ação de contato divididas pelas sessões elegíveis no mesmo intervalo. Se houver apenas totais de eventos, reporte **interações por visita**, que pode exceder 100%. Deduplicar pessoas ou somar vários cliques como leads distorce o resultado. Registre conversas, entrevistas e propostas à parte.
+
+## Currículo, SEO e manutenção
+
+Após aprovação da versão final (#20), coloque apenas o PDF aprovado em `public/`, acrescente um link de download com nome acessível e `data-evento="resume_download"`. Teste a resposta HTTP, o tipo PDF, a extração de texto, o download em desktop e a abertura no celular antes de integrar. Não versione rascunhos com dados pessoais.
+
+No [Search Console](https://search.google.com/search-console/), adicione a propriedade por **prefixo de URL** `https://petherson-dev.vercel.app/`. Escolha a verificação por tag HTML. Configure **somente o valor content** como `GOOGLE_SITE_VERIFICATION` no projeto Vercel, ambiente Production, e faça um novo build após aprovação. Confira a meta tag no HTML e clique em Verificar. Em Sitemaps, envie `sitemap.xml`; em Inspeção de URL, verifique as cinco URLs do sitemap, teste a URL publicada e solicite indexação se apropriado. A confirmação de propriedade e a indexação são independentes. [Guia de verificação](https://support.google.com/webmasters/answer/9008080)
+
+Em cada revisão de dependências rode `npm audit`, confira cadeias afetadas e repita o CI. A política em `next.config.mjs` bloqueia enquadramento, objetos embutidos e base externa. Não estabelece uma allowlist de scripts. Reavalie se incluir scripts externos ou formulários. A aplicação não requer segredos de runtime.
+
+[Auditoria final, roteiro assistivo e limitações](docs/auditoria-final.md) · [Textos e plano de divulgação](docs/divulgacao.md)

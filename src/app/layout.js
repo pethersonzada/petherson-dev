@@ -1,8 +1,11 @@
+import Medicao from "./components/Medicao";
+import { cases } from "./data/cases";
 import Link from "next/link";
 import "./globals.css";
 import Contato from "./components/Contato";
 import { origin } from "./data/site";
 export const metadata = {
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
   metadataBase: new URL(origin),
   title: { default: "Miguel Petherson", template: "%s | Miguel Petherson" },
 };
@@ -10,6 +13,7 @@ export default function Layout({ children }) {
   return (
     <html lang="pt-BR">
       <body>
+        <Medicao slugs={cases.map(p => p.slug)} />
         <a className="skip" href="#conteudo">
           Pular para o conteúdo
         </a>
@@ -17,7 +21,7 @@ export default function Layout({ children }) {
           <Link
             className="brand"
             href="/"
-            aria-label="Miguel Petherson, início"
+            aria-label="mp. Miguel Petherson, início"
           >
             mp<span>.</span>
           </Link>
@@ -25,7 +29,7 @@ export default function Layout({ children }) {
             <Link href="/projetos">Projetos</Link>
             <Link href="/#servicos">Serviços</Link>
             <Link href="/#sobre">Sobre</Link>
-            <a href="#contato">Contato</a>
+            <a data-evento="contact_click" href="#contato">Contato</a>
           </nav>
         </header>
         <main className="wrap" id="conteudo" tabIndex={-1}>
@@ -34,7 +38,7 @@ export default function Layout({ children }) {
         </main>
         <footer className="wrap bar">
           <span>Miguel Petherson</span>
-          <a href="https://github.com/pethersonzada">GitHub ↗</a>
+          <a data-evento="github_click" href="https://github.com/pethersonzada">GitHub ↗</a>
         </footer>
       </body>
     </html>

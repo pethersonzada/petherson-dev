@@ -32,7 +32,7 @@ export default async function Case({ params }) {
           <p className="stack">{p.stack.join(" · ")}</p>
           <div className="actions">
             {p.links.slice(0, 2).map(([label, url]) => (
-              <a className="button" key={url} href={url}>
+              <a className="button" key={url} href={url} data-evento={new URL(url).hostname === "github.com" ? "github_click" : "demo_click"}>
                 {label} ↗
               </a>
             ))}
@@ -72,7 +72,7 @@ export default async function Case({ params }) {
           <h2>Código e demonstração</h2>
           <div className="actions">
             {p.links.map(([label, url]) => (
-              <a className="textlink" key={url} href={url}>
+              <a className="textlink" key={url} href={url} data-evento={new URL(url).hostname === "github.com" ? "github_click" : "demo_click"}>
                 {label} ↗
               </a>
             ))}
