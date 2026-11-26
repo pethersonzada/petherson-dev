@@ -13,7 +13,6 @@ export default function Layout({ children }) {
   return (
     <html lang="pt-BR">
       <body>
-        <Medicao slugs={cases.map(p => p.slug)} />
         <a className="skip" href="#conteudo">
           Pular para o conteúdo
         </a>
@@ -40,6 +39,7 @@ export default function Layout({ children }) {
           <span>Miguel Petherson</span>
           <a data-evento="github_click" href="https://github.com/pethersonzada">GitHub ↗</a>
         </footer>
+        <Medicao slugs={cases.map(p => p.slug)} />
       </body>
     </html>
   );
