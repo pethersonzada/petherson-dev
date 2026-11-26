@@ -39,7 +39,7 @@ export default function Home() {
             <a className="button primary" href="#projetos">
               Ver projetos ↓
             </a>
-            <a className="button" href="#contato">
+            <a className="button" data-evento="contact_click" href="#contato">
               Entrar em contato
             </a>
           </div>
@@ -109,7 +109,7 @@ export default function Home() {
           O primeiro passo é entender quem usa o processo e onde ele trava. Com
           isso, definimos o escopo e uma proposta de entrega.
         </p>
-        <a className="textlink" href="#contato">
+        <a className="textlink" data-evento="service_interest" href="#contato">
           Conversar sobre um projeto →
         </a>
       </section>

@@ -83,3 +83,37 @@ test("Sitemap, canonical, imagem social e robots", async ({
     "sitemap.xml",
   );
 });
+
+test("Sinais locais usam apenas o nome da ação e o slug conhecido", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.sinais = [];
+    window.addEventListener("portfolio:evento", event => window.sinais.push(event.detail));
+  });
+  await page.goto("/projetos?email=dado-privado");
+  await page.getByRole("link", { name: "Ver case BeVans" }).click();
+  await page.getByRole("link", { name: "Contato", exact: true }).click();
+  expect(await page.evaluate(() => window.sinais)).toEqual([
+    { nome: "project_view", propriedades: {} },
+    { nome: "case_study_view", propriedades: { projeto: "bevans" } },
+    { nome: "contact_click", propriedades: { projeto: "bevans" } },
+  ]);
+});
+
+test("Falha ao copiar mantém o endereço disponível e anuncia a alternativa", async ({ page }) => {
+  await page.addInitScript(() => Object.defineProperty(navigator, "clipboard", {
+    value: { writeText: async () => { throw new Error("Permissão negada"); } },
+  }));
+  await page.goto("/");
+  await page.getByRole("button", { name: "Copiar e-mail" }).click();
+  await expect(page.getByRole("status")).toContainText("copiar manualmente");
+  await expect(page.getByRole("link", { name: "pethersonzada@gmail.com" })).toBeVisible();
+});
+
+test("Cabeçalhos de defesa e 404 preservam a navegação", async ({page}) => {
+  const result = await page.goto("/rota-que-nao-existe");
+  expect(result.status()).toBe(404);
+  expect(result.headers()["content-security-policy"]).toContain("frame-ancestors 'none'");
+  expect(result.headers()["x-content-type-options"]).toBe("nosniff");
+  await page.getByRole("link", {name:"Voltar aos projetos"}).click();
+  await expect(page).toHaveURL(/\/projetos$/);
+});

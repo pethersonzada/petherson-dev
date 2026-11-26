@@ -1,4 +1,5 @@
 "use client";
+import { sinalizar } from "./Medicao";
 import { useState } from "react";
 const email = "pethersonzada@gmail.com";
 export default function Contato() {
@@ -7,6 +8,7 @@ export default function Contato() {
     try {
       await navigator.clipboard.writeText(email);
       setStatus("E-mail copiado.");
+      sinalizar("email_copy");
     } catch {
       setStatus("Selecione o endereço acima para copiar manualmente.");
     }
@@ -20,11 +22,11 @@ export default function Contato() {
         sistema.
       </p>
       <div className="actions">
-        <a href={`mailto:${email}`}>{email}</a>
+        <a data-evento="email_click" href={`mailto:${email}`}>{email}</a>
         <button type="button" onClick={copiar}>
           Copiar e-mail
         </button>
-        <a href="https://www.linkedin.com/in/pethersonzada">LinkedIn ↗</a>
+        <a data-evento="linkedin_click" href="https://www.linkedin.com/in/pethersonzada">LinkedIn ↗</a>
       </div>
       <small role="status">{status}</small>
     </section>
