@@ -1,0 +1,85 @@
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+const routes = [
+  "/",
+  "/projetos",
+  "/projetos/bevans",
+  "/projetos/marketplace-de-servicos",
+  "/projetos/helpdesk-ti",
+  "/projetos/inexistente",
+];
+for (const route of routes) {
+  test(`Layout, conteúdo e acessibilidade em ${route}`, async ({ page }) => {
+    const errors = [];
+    page.on("pageerror", (err) => errors.push(err.message));
+    const response = await page.goto(route);
+    expect(response.status()).toBe(route.endsWith("inexistente") ? 404 : 200);
+    await expect(page.locator("h1")).toHaveCount(1);
+    for (const width of [320, 375, 390, 768, 1024, 1440, 1920]) {
+      await page.setViewportSize({ width, height: 900 });
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth),
+        `overflow em ${width}`,
+      ).toBeLessThanOrEqual(width);
+    }
+    for (const img of await page.locator("main img").all()) {
+      await img.scrollIntoViewIfNeeded();
+      await expect
+        .poll(() => img.evaluate((i) => i.complete && i.naturalWidth > 0))
+        .toBe(true);
+    }
+    const result = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+      .analyze();
+    expect(result.violations.map((v) => v.id)).toEqual([]);
+    expect(errors).toEqual([]);
+  });
+}
+test("Navegação por teclado, filtro e retorno ao case", async ({ page }) => {
+  await page.goto("/");
+  await page.keyboard.press("Tab");
+  await expect(page.getByText("Pular para o conteúdo")).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("main")).toBeFocused();
+  await page.getByRole("link", { name: "Ver projetos ↓", exact: true }).click();
+  await expect(page).toHaveURL(/#projetos$/);
+  await page.getByRole("link", { name: "Catálogo completo" }).click();
+  await page.getByRole("button", { name: "Automação" }).click();
+  await expect(page.getByRole("status").first()).toHaveText("1 projeto");
+  await page.getByRole("link", { name: "Ver case BeVans" }).click();
+  await expect(page.locator("h1")).toHaveText("BeVans");
+  await page.getByRole("link", { name: "Todos os projetos" }).click();
+  await expect(page.locator("h1")).toHaveText("Projetos");
+});
+test("Contato por e-mail e feedback da cópia", async ({ page, context }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto("/");
+  await page.getByRole("link", { name: "Entrar em contato" }).click();
+  const email = page.getByRole("link", { name: "pethersonzada@gmail.com" });
+  await expect(email).toHaveAttribute("href", "mailto:pethersonzada@gmail.com");
+  await page.getByRole("button", { name: "Copiar e-mail" }).click();
+  await expect(page.getByRole("status")).toHaveText("E-mail copiado.");
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    "pethersonzada@gmail.com",
+  );
+});
+test("Sitemap, canonical, imagem social e robots", async ({
+  page,
+  request,
+}) => {
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  for (const route of routes.slice(0, -1)) {
+    await page.goto(route);
+    const url = "https://petherson-dev.vercel.app" + route;
+    expect(sitemap).toContain(url);
+    const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
+    expect(new URL(canonical).href).toBe(url);
+    expect(
+      await page.locator('meta[property="og:image"]').getAttribute("content"),
+    ).toContain("/social.png");
+  }
+  expect((await request.get("/social.png")).ok()).toBe(true);
+  expect(await (await request.get("/robots.txt")).text()).toContain(
+    "sitemap.xml",
+  );
+});
