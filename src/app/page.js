@@ -42,6 +42,9 @@ export default function Home() {
             <a className="button" data-evento="contact_click" href="#contato">
               Entrar em contato
             </a>
+            <a className="button" href="/Miguel-Petherson-Curriculo.pdf" download data-evento="resume_download">
+              Baixar currículo (PDF)
+            </a>
           </div>
         </div>
         <Link

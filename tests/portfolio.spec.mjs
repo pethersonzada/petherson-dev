@@ -141,3 +141,31 @@ test("Ativações de canais emitem um sinal por ação", async ({ page, context 
   await page.locator('a[data-evento="demo_click"]').first().click();
   expect(await page.evaluate(() => window.sinais.slice(-2))).toEqual(["case_study_view","demo_click"]);
 });
+
+
+test("Currículo aprovado: arquivo íntegro, download e sinal local em desktop e mobile", async ({page, request}) => {
+  const { createHash } = await import("node:crypto");
+  const url = "/Miguel-Petherson-Curriculo.pdf";
+  const response = await request.get(url);
+  expect(response.ok()).toBe(true);
+  expect(response.headers()["content-type"]).toContain("application/pdf");
+  const bytes = await response.body();
+  expect(bytes.subarray(0, 5).toString()).toBe("%PDF-");
+  expect(createHash("sha256").update(bytes).digest("hex")).toBe("4f32c5e5520b0e8dc17b19e50132cff4f5c8364db77798a664dbad50903ea6f9");
+  await page.addInitScript(() => {
+    window.sinais = [];
+    window.addEventListener("portfolio:evento", e => window.sinais.push(e.detail.nome));
+  });
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({width, height: 900});
+    await page.goto("/");
+    const link = page.getByRole("link", {name:"Baixar currículo (PDF)", exact:true});
+    await expect(link).toHaveAttribute("href", url);
+    const downloadPromise = page.waitForEvent("download");
+    await link.click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toBe("Miguel-Petherson-Curriculo.pdf");
+    expect(await download.failure()).toBeNull();
+    await expect.poll(() => page.evaluate(() => window.sinais.filter(n => n === "resume_download").length)).toBe(1);
+  }
+});
